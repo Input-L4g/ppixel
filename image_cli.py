@@ -68,7 +68,9 @@ class ResizeImage:
         if resize is not None:
             w = resize[0]
             h = resize[1]
-            if maintain_proportion and any(v is None for v in resize):
+            all_none = all(i is None for i in resize)
+            any_none = any(i is None for i in resize)
+            if maintain_proportion and not all_none and any_none:
                 resize = cls.resize_in_proportion(image_size, w, h)
             else:
                 resize = (w or image_size[0], h or image_size[1])
