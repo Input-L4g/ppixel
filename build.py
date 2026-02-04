@@ -5,7 +5,7 @@ from pathlib import Path
 from shutil import rmtree
 
 SCRIPT_NAME = "run.py"
-CORE_NAME = "image-clis"
+CORE_NAME = "image-cli"
 APP_NAME = "image-cli"
 
 COMMON_ARGS = [
@@ -13,7 +13,9 @@ COMMON_ARGS = [
     "--onefile",  # Um único executável
     "--console",  # IMPORTANTE: Mantém o console (padrão para CLI)
     f"--name={APP_NAME}",  # Nome do executável
-    "--clean",  # Limpa cache antes de buildar
+    "--log-level=WARN",
+    "--clean",  # Limpa cache antes de buildar,
+    "--noconfirm",
 ]
 
 PLATFORM_ARGS: dict[str, list[str]] = {
@@ -80,7 +82,7 @@ def remove_pyinstaller_trash():
         if path.is_dir():
             rmtree(path)
         else:
-            path.unlink(True)
+            path.unlink()
 
 
 def build() -> None:
