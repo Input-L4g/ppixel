@@ -227,7 +227,7 @@ class Builder:
             sys_exit(err)
 
         if remove_modules is not None and MessageCLI.ask_check(
-            "Dependências temporárias foram instaladas no processo.",
+            "As dependências instaladas não serão mais necessárias.",
             "Deseja remove-las?",
         ):
             for module in remove_modules:
